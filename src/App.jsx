@@ -1,6 +1,6 @@
 import { useState } from 'react'
-
-import './App.css'
+import './index.css'
+import Home from './components/Home';
 
 function App() {
   const [email, setemail]= useState("");
@@ -32,16 +32,17 @@ function login(){
 }
 
   return (
-    <>
-      <div>
-      <h1>Login</h1>
-      <div>
-      <input type='text' placeholder='email'onChange={(e)=>setemail(e.target.value)}/><br></br>
-      <input type='password' placeholder='password' onChange={(e)=>setPassword(e.target.value)}/><br></br>
-      <button onClick={(e)=>login()}>login</button>
-      </div>
-      </div>
-    </>
+    <div className='h-[90vh]'>
+    <nav className='bg-teal-500 justify-between flex'>
+    <div >
+    <h1 className='text-3xl font-bold'>Levitation</h1>
+    </div>
+    </nav>
+    
+    <Home/>
+    
+    
+    </div>
   )
 }
 
