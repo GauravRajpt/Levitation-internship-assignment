@@ -35,7 +35,7 @@ function login(){
     <div className='h-[90vh]'>
     <nav className='bg-teal-500 justify-between flex'>
     <div >
-    <h1 className='text-3xl font-bold'>Levitation</h1>
+    <h1 className='text-3xl m-2 font-bold'>Levitation</h1>
     </div>
     </nav>
     
