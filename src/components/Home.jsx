@@ -24,13 +24,24 @@ function Home() {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
+          if(!data.authtoken){
+            if(data.message==='Unable to locate var: users.password'){
+              toast.warning('invalid credential');
+            }
+            else{
+              toast.warning(data.message);
+            }
+          }
+          
         })
         .catch((err) => {
           console.log(err);
+        
         });
     }
   }
   function validation() {
+    var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     let result = true;
     if (email === "" || email === null) {
       result = false;
@@ -39,6 +50,10 @@ function Home() {
     if (password === "" || password === null) {
       result = false;
       toast.warning("please enter password");
+    }
+    if(!emailRegex.test(email)){
+      result= false;
+      toast.warning("please enter valid email")
     }
     return result;
   }
