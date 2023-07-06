@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
+  document.getElementById('logout').classList.add('hidden')
+
+  useEffect(()=>{
+    localStorage.clear();
+  },[])
 
   const navigate = useNavigate();
   const [email, setemail] = useState("");
@@ -24,13 +29,14 @@ function Login() {
           email: email,
           password: password,
         }),
-      })
+      })  
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
           if(data.authToken){
             localStorage.setItem("authToken",data.authToken);
             setisauthenticate(true);
+      
             navigate("/form")
             
           }
@@ -49,6 +55,9 @@ function Login() {
         
         });
     }
+  }
+  if(isauthenticate){
+    navigate("/form")
   }
   function validation() {
     var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './index.css'
-
+import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
 function App() {
@@ -35,8 +35,9 @@ function login(){
   return (
     <div className='h-[90vh]'>
     <nav className='bg-teal-500 justify-between flex'>
-    <div >
+    <div className='flex justify-between w-full'>
     <h1 className='text-3xl m-2 font-bold'>Levitation</h1>
+    <Link  to="/"><button className='hidden rounded-md bg-gray-100 ' id="logout" >Logout</button></Link>
     </div>
     </nav>
     
