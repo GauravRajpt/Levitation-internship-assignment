@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './index.css'
-import Home from './components/Home';
+
+import { Outlet } from 'react-router-dom';
 
 function App() {
   const [email, setemail]= useState("");
@@ -39,7 +40,7 @@ function login(){
     </div>
     </nav>
     
-    <Home/>
+    <Outlet/>
     
     
     </div>

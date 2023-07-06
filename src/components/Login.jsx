@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-function Home() {
+function Login() {
+
+  const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
+  const [isauthenticate, setisauthenticate]= useState(false);
 
   function proceedtoLogin(e) {
     e.preventDefault();
@@ -24,6 +28,12 @@ function Home() {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
+          if(data.authToken){
+            localStorage.setItem("authToken",data.authToken);
+            setisauthenticate(true);
+            navigate("/form")
+            
+          }
           if(!data.authtoken){
             if(data.message==='Unable to locate var: users.password'){
               toast.warning('invalid credential');
@@ -51,12 +61,14 @@ function Home() {
       result = false;
       toast.warning("please enter password");
     }
-    if(!emailRegex.test(email)){
+    if(!emailRegex.test(email) && email){
       result= false;
       toast.warning("please enter valid email")
     }
     return result;
   }
+
+  
 
   return (
     <form onSubmit={(e) => proceedtoLogin(e)}>
@@ -97,4 +109,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Login;
